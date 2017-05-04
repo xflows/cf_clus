@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Clus", 
+    "parent": null, 
+    "order": 1, 
+    "uid": "55c0628f-f12d-40fe-bbca-f7c960654a01"
+  }
+}

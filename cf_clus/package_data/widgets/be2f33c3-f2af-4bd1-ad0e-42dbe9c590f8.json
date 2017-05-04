@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "55c0628f-f12d-40fe-bbca-f7c960654a01", 
+      "treeview_image": "", 
+      "uid": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "windows_queue": false, 
+      "package": "cf_clus", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "", 
+      "action": "clus", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Clus"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "ARFF data", 
+      "short_name": "arf", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "arff", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "afb97fc0-d362-40b7-89a3-9775a238b433"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Settings", 
+      "short_name": "set", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "settings", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "b44cfa1a-169b-4585-a2f1-b491124c1c79"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Output", 
+      "short_name": "out", 
+      "description": "", 
+      "variable": "output", 
+      "order": 1, 
+      "uid": "fe64bb56-807f-420c-a774-0021df29e9fb"
+    }
+  }
+]
