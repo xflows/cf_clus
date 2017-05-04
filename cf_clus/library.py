@@ -30,8 +30,6 @@ def clus(input_dict):
     # Execute CLUS.
 
     clus_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'bin', 'Clus.jar')
-
-    # First we get the absolute path of the Clus jar.
     try:
         output = check_output(
             ["java", "-jar", clus_path, temporary_settings.name])
