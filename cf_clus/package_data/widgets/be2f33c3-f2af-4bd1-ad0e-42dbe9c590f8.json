@@ -49,7 +49,7 @@
       "short_name": "set", 
       "default": "", 
       "description": "", 
-      "required": true, 
+      "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "settings", 
