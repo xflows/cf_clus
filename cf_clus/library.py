@@ -23,6 +23,12 @@ def clus(input_dict):
     if not settings.has_section('Data'):
         settings.add_section('Data')
     settings.set('Data', 'File', temporary_arff.name)
+
+    # We need to enable ClowdFlows output.
+    if not settings.has_section('Output'):
+        settings.add_section('Output')
+    settings.set('Output', 'OutputClowdFlowsJSON', 'Yes')
+
     temporary_settings = open(temporary_settings.name, mode='wb')
     settings.write(temporary_settings)
     temporary_settings.close()
