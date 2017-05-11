@@ -2,6 +2,7 @@ from subprocess import check_output, CalledProcessError
 from tempfile import NamedTemporaryFile
 import os
 import ConfigParser
+import json
 
 
 def clus(input_dict):
@@ -49,7 +50,37 @@ def clus(input_dict):
     except:
         pass
 
+    json_file = open(temporary_settings.name.replace(".s", ".json"), 'rb')
+    json_contents = json.loads(json_file.read())
+    returned_settings = json_contents['settings']
+    models = json_contents['models']
+    os.unlink(json_file.name)
+
+    default = {}
+    original = {}
+    pruned = {}
+
+    for m in models:
+        print m
+        if m['name'] == 'Default':
+            default = m['representation']
+        if m['name'] == 'Original':
+            original = m['representation']
+        if m['name'] == 'Pruned':
+            pruned = m['representation']
+
     # We remove all temporary files.
     os.unlink(temporary_arff.name)
     os.unlink(temporary_settings.name)
-    return {'output': output}
+    return {
+        'output': output,
+        'settings': returned_settings,
+        'models': models,
+        'default': default,
+        'original': original,
+        'pruned': pruned
+    }
+
+
+def clus_display_svg(input_dict):
+    return {}
