@@ -21,7 +21,7 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display SVG Decision Tree"
+      "name": "Display Decision Tree (Static)"
     }
   }, 
   {
