@@ -1,0 +1,79 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "55c0628f-f12d-40fe-bbca-f7c960654a01", 
+      "treeview_image": "", 
+      "uid": "e86563eb-e893-401b-92b4-4477d5e8cd49", 
+      "windows_queue": false, 
+      "package": "cf_clus", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Displays a decision tree built by CLUS. \r\nHint: to download the image, right click on it and select open image in new tab/window.", 
+      "static_image": "TreeVisualization.png", 
+      "action": "clus_display_svg", 
+      "visualization_view": "clus_display_svg", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Display SVG Decision Tree"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "e86563eb-e893-401b-92b4-4477d5e8cd49", 
+      "name": "Image type", 
+      "short_name": "imt", 
+      "default": "vector", 
+      "description": "Whether to create a raster (PNG) or vector (SVG) image", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "img_type", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "3b72be21-2ef0-4e25-a08c-1aa831706edb"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "e86563eb-e893-401b-92b4-4477d5e8cd49", 
+      "name": "Classifier", 
+      "short_name": "cls", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "classifier", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "680613c6-ddce-4226-a9f0-854bd87b5755"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Raster image (.PNG)", 
+      "uid": "a6bcd3df-1ae0-4c98-adf6-c3040347e387", 
+      "value": "raster", 
+      "abstract_input": "3b72be21-2ef0-4e25-a08c-1aa831706edb"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Vector image (.SVG)", 
+      "uid": "ce6ab86a-c492-4cba-baf0-f87ff32f992e", 
+      "value": "vector", 
+      "abstract_input": "3b72be21-2ef0-4e25-a08c-1aa831706edb"
+    }
+  }
+]

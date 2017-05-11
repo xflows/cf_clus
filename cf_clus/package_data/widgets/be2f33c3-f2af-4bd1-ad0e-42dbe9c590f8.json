@@ -62,6 +62,66 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Models", 
+      "short_name": "mod", 
+      "description": "", 
+      "variable": "models", 
+      "order": 3, 
+      "uid": "0d905e0c-e453-4e01-9ae4-dc0611367d7c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Original", 
+      "short_name": "ori", 
+      "description": "", 
+      "variable": "original", 
+      "order": 5, 
+      "uid": "306506bc-1ac2-4d76-b473-01e4c54e0337"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Pruned", 
+      "short_name": "pru", 
+      "description": "", 
+      "variable": "pruned", 
+      "order": 6, 
+      "uid": "3f92c9c1-82dd-40cc-84b6-9cb3be447a99"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Settings", 
+      "short_name": "set", 
+      "description": "", 
+      "variable": "settings", 
+      "order": 2, 
+      "uid": "cb3d2c11-d47c-4ced-89b6-6d99998ed85f"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Default", 
+      "short_name": "def", 
+      "description": "", 
+      "variable": "default", 
+      "order": 4, 
+      "uid": "f561d513-56b0-40ca-96b1-d82fb7b45105"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
       "name": "Output", 
       "short_name": "out", 
       "description": "", 
