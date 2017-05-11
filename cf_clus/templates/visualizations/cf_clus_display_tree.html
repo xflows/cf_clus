@@ -1,0 +1,76 @@
+<div id="widgetvisualization-{{ widget.pk }}" width="900" height="700" rel="{{ widget.pk }}"
+     class="widgetvisualizationdialog" title="{{ widget.name }} results">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" rel="stylesheet" type="text/css"/>
+    <div id="mynetwork{{ widget.pk }}"
+         style="border:1px solid black; background:white; width:100%; height:95%; margin:auto;"></div>
+
+    <script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+            {% for node in nodes %}
+            {id: '{{ node.id }}', label: '{{ node.label|safe }}', shape: '{{node.shape}}', shadow:{
+      enabled: true,
+      color: 'rgba(0,0,0,0.5)',
+      size:10,
+      x:5,
+      y:5
+    }, color: {
+      border: '#2B7CE9',
+      background: 'white',
+      highlight: {
+        border: '#2B7CE9',
+        background: '#D2E5FF'
+      },
+      hover: {
+        border: '#2B7CE9',
+        background: '#D2E5FF'
+      }
+    }}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        // create an array with edges
+        var edges = new vis.DataSet([
+            {% for edge in edges %}
+            {from: '{{ edge.from }}', to: '{{ edge.to }}', label:'{{ edge.label|safe }}'}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        // create a network
+        var container = document.getElementById('mynetwork{{ widget.pk }}');
+
+        // provide the data in the vis format
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            'layout': {
+                'hierarchical': {
+                  enabled:true,
+                  levelSeparation: 150,
+                  nodeSpacing: 200,
+                  treeSpacing: 200,
+                  blockShifting: true,
+                  edgeMinimization: true,
+                  parentCentralization: true,
+                  direction: 'UD',        // UD, DU, LR, RL
+                  sortMethod: 'directed'   // hubsize, directed
+                }
+            },
+            'interaction': {
+                'navigationButtons': true,
+                'keyboard': true
+            },
+            'edges': {
+                'arrows': {
+                    'to': {'enabled': true, 'scaleFactor': 1, 'type': 'arrow'}
+                }
+            }
+        };
+
+        // initialize your network!
+        var network = new vis.Network(container, data, options);
+    </script>
+</div>

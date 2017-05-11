@@ -1,7 +1,9 @@
 from django.shortcuts import render
 import os
-from utils import clus_tree_to_dot
+from utils import clus_tree_to_dot, clus_tree_to_node_edge
 from random import random
+
+from django.conf import settings
 
 
 def clus_display_svg(request, input_dict, output_dict, widget):
@@ -53,7 +55,12 @@ def clus_display_svg(request, input_dict, output_dict, widget):
     destination_img = os.path.join(MEDIA_ROOT, filename)
     ensure_dir(destination_img)
 
-    subprocess.call("dot -T%s %s -o %s" % (img_type, destination_dot, destination_img), shell=True)
+    try:
+        dot_path = settings.DOT_PATH
+    except:
+        dot_path = 'dot'
+
+    subprocess.call(dot_path+" -T%s %s -o %s" % (img_type, destination_dot, destination_img), shell=True)
 
     return render(request,
                   'visualizations/cf_clus_display_svg_tree.html',
@@ -61,3 +68,18 @@ def clus_display_svg(request, input_dict, output_dict, widget):
                    'random': int(random() * 10000000),
                    'widget': widget,
                    'input_dict': input_dict})
+
+
+def clus_display_tree(request, input_dict, output_dict, widget):
+    """Visualization displaying a decision tree"""
+
+    nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+
+    return render(request,
+                  'visualizations/cf_clus_display_tree.html',
+                  {
+                      'widget': widget,
+                      'input_dict': input_dict,
+                      'nodes': nodes,
+                      'edges': edges
+                  })

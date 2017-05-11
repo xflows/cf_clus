@@ -84,3 +84,7 @@ def clus(input_dict):
 
 def clus_display_svg(input_dict):
     return {}
+
+
+def clus_display_tree(input_dict):
+    return {}
