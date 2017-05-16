@@ -47,6 +47,7 @@ def clus(input_dict):
             p.returncode) + ")")
 
     output = p.stdout.read()
+    error = p.stderr.read()
 
     try:
         output_file = open(temporary_settings.name.replace(".s", ".out"), 'rb')
@@ -90,7 +91,8 @@ def clus(input_dict):
         'models': models,
         'default': default,
         'original': original,
-        'pruned': pruned
+        'pruned': pruned,
+        'error:': error
     }
 
 

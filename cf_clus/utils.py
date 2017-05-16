@@ -21,7 +21,8 @@ def clus_tree_to_node_edge(node, node_index):
     node['dot_id'] = node_index
     if 'children' in node:
         nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse',
-                      'target_stat': node['target_stat'].replace(',', ',\\n')})
+                      'target_stat': node['target_stat'].replace(',', ',\\n'),
+                      'title': node['summary'].replace("\n", "<br>")})
         node_index += 1
         for child in node['children']:
             child_nodes, child_edges, node_index = clus_tree_to_node_edge(child, node_index)
@@ -30,12 +31,14 @@ def clus_tree_to_node_edge(node, node_index):
             edges.append({'from': node['dot_id'], 'to': child['dot_id'], 'label': child['branch_label']})
     else:
         nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box',
-                      'target_stat': node['target_stat']})
+                      'target_stat': node['target_stat'], 'title': node['summary'].replace("\n", "<br>")})
         return nodes, edges, node_index + 1
     return nodes, edges, node_index
 
 
 def perform_test(test_string, instance, attributes):
+    if '(' in test_string:
+        test_string = test_string.split(' (')[0]
     if ' > ' in test_string:
         name_value = test_string.split(' > ')
         name = name_value[0]
