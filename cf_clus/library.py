@@ -4,6 +4,8 @@ import os
 import ConfigParser
 import json
 
+import subprocess
+
 
 def clus(input_dict):
     # First we write the ARFF file and the settings file into temporary files.
@@ -37,12 +39,15 @@ def clus(input_dict):
     # Execute CLUS.
 
     clus_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'bin', 'Clus.jar')
-    try:
-        output = check_output(
-            ["java", "-jar", clus_path, temporary_settings.name])
-    except CalledProcessError, e:
-        raise Exception("An error has occured while trying to execute CLUS. Output:" + str(e.output) + " Cmd:" + str(
-            e.cmd) + " return code: " + str(e.returncode))
+    p = subprocess.Popen(["java", "-jar", clus_path, temporary_settings.name], stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE)
+
+    if p.returncode != 0 and p.returncode is not None:
+        raise Exception("There was an error when running CLUS: " + str(p.stderr.read()) + " (Error code: " + str(
+            p.returncode) + ")")
+
+    output = p.stdout.read()
+
     try:
         output_file = open(temporary_settings.name.replace(".s", ".out"), 'rb')
         output = output_file.read()
@@ -50,24 +55,31 @@ def clus(input_dict):
     except:
         pass
 
-    json_file = open(temporary_settings.name.replace(".s", ".json"), 'rb')
-    json_contents = json.loads(json_file.read())
-    returned_settings = json_contents['settings']
-    models = json_contents['models']
-    os.unlink(json_file.name)
+    try:
+        json_file = open(temporary_settings.name.replace(".s", ".json"), 'rb')
+        json_contents = json.loads(json_file.read())
+        returned_settings = json_contents['settings']
+        models = json_contents['models']
+        os.unlink(json_file.name)
 
-    default = {}
-    original = {}
-    pruned = {}
+        default = {}
+        original = {}
+        pruned = {}
 
-    for m in models:
-        print m
-        if m['name'] == 'Default':
-            default = m['representation']
-        if m['name'] == 'Original':
-            original = m['representation']
-        if m['name'] == 'Pruned':
-            pruned = m['representation']
+        for m in models:
+            print m
+            if m['name'] == 'Default':
+                default = m['representation']
+            if m['name'] == 'Original':
+                original = m['representation']
+            if m['name'] == 'Pruned':
+                pruned = m['representation']
+    except:
+        returned_settings = None
+        models = None
+        default = None
+        original = None
+        pruned = None
 
     # We remove all temporary files.
     os.unlink(temporary_arff.name)
@@ -87,4 +99,8 @@ def clus_display_svg(input_dict):
 
 
 def clus_display_tree(input_dict):
+    return {}
+
+
+def clus_display_tree_and_examples(input_dict):
     return {}

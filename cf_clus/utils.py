@@ -28,6 +28,41 @@ def clus_tree_to_node_edge(node, node_index):
             edges += child_edges
             edges.append({'from': node['dot_id'], 'to': child['dot_id'], 'label': child['branch_label']})
     else:
-        nodes.append({'id': node_index, 'label': node['target_stat'], 'shape': 'box'})
+        nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box'})
         return nodes, edges, node_index + 1
     return nodes, edges, node_index
+
+
+def perform_test(test_string, instance, attributes):
+    if ' > ' in test_string:
+        name_value = test_string.split(' > ')
+        name = name_value[0]
+        value = float(name_value[1])
+        i = 0
+        for a in attributes:
+            if a[0] == name:
+                return instance[i] > value
+            i += 1
+    if ' = ' in test_string:
+        name_value = test_string.split(' = ')
+        name = name_value[0]
+        value = name_value[1]
+        i = 0
+        for a in attributes:
+            if a[0] == name:
+                return instance[i] == value
+            i += 1
+    return None
+
+
+def get_instance_nodes(node, instance, attributes):
+    node_ids = []
+    node_ids.append(node['dot_id'])
+    if 'children' in node:
+        test_result = perform_test(node['test_string'], instance, attributes)
+        for child in node['children']:
+            if test_result == True and child['branch_label'] == 'Yes':
+                node_ids = node_ids + get_instance_nodes(child, instance, attributes)
+            if test_result == False and child['branch_label'] == 'No':
+                node_ids = node_ids + get_instance_nodes(child, instance, attributes)
+    return node_ids

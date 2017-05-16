@@ -1,9 +1,10 @@
 from django.shortcuts import render
 import os
-from utils import clus_tree_to_dot, clus_tree_to_node_edge
+from utils import clus_tree_to_dot, clus_tree_to_node_edge, get_instance_nodes
 from random import random
 
 from django.conf import settings
+import arff
 
 
 def clus_display_svg(request, input_dict, output_dict, widget):
@@ -35,7 +36,7 @@ def clus_display_svg(request, input_dict, output_dict, widget):
         for cls in input_dict['classifier']:
             dot_representation, starting_id = clus_tree_to_dot(cls['representation'], starting_id)
             dot_text += dot_representation + "\n"
-            #dot_text = dot_text + "digraph " + cls['name'] + " {\n" + \
+            # dot_text = dot_text + "digraph " + cls['name'] + " {\n" + \
             #           dot_representation + "}\n\n"
         dot_text = "digraph Tree {\n" + dot_text + "}"
     else:
@@ -60,7 +61,7 @@ def clus_display_svg(request, input_dict, output_dict, widget):
     except:
         dot_path = 'dot'
 
-    subprocess.call(dot_path+" -T%s %s -o %s" % (img_type, destination_dot, destination_img), shell=True)
+    subprocess.call(dot_path + " -T%s %s -o %s" % (img_type, destination_dot, destination_img), shell=True)
 
     return render(request,
                   'visualizations/cf_clus_display_svg_tree.html',
@@ -73,7 +74,15 @@ def clus_display_svg(request, input_dict, output_dict, widget):
 def clus_display_tree(request, input_dict, output_dict, widget):
     """Visualization displaying a decision tree"""
 
-    nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+    if type(input_dict['classifier']) == list:
+        nodes, edges = [], []
+        starting_id = 0
+        for cls in input_dict['classifier']:
+            new_nodes, new_edges, starting_id = clus_tree_to_node_edge(cls, starting_id)
+            nodes += new_nodes
+            edges += new_edges
+    else:
+        nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
 
     return render(request,
                   'visualizations/cf_clus_display_tree.html',
@@ -83,3 +92,31 @@ def clus_display_tree(request, input_dict, output_dict, widget):
                       'nodes': nodes,
                       'edges': edges
                   })
+
+
+def clus_display_tree_and_examples(request, input_dict, output_dict, widget):
+    """Visualization displaying a decision tree and the examples in the tree"""
+
+    nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+
+    data = arff.loads(input_dict['arff'])
+
+    datanodes = []
+
+    for instance in data['data']:
+        instance_nodes = get_instance_nodes(input_dict['classifier'], instance, data['attributes'])
+        datanodes.append({'data':instance,'nodes':instance_nodes})
+
+
+    return render(request,
+                  'visualizations/cf_clus_display_tree_and_examples.html',
+                  {
+                      'widget': widget,
+                      'input_dict': input_dict,
+                      'nodes': nodes,
+                      'edges': edges,
+                      'data': data,
+                      'datanodes': datanodes,
+                      'random': int(random() * 10000000),
+                  })
+

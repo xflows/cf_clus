@@ -2,10 +2,49 @@
      class="widgetvisualizationdialog" title="{{ widget.name }} results">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" rel="stylesheet" type="text/css"/>
+{% comment %}<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.15/datatables.min.css"/>
+{% endcomment %}
+{% comment %}<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.15/datatables.min.js"></script>{% endcomment %}
     <div id="mynetwork{{ widget.pk }}"
-         style="border:1px solid black; background:white; width:100%; height:95%; margin:auto;"></div>
+         style="border:1px solid black; background:white; width:100%; height:50%; margin:auto;"></div>
+
+
+
+<center>
+    <br>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="datasetTable{{widget.pk}}{{ random }}">
+	<!-- header -->
+	<thead>
+		<tr>
+            {% for attribute in data.attributes %}
+			<th>{{ attribute.0 }}</th>
+            {% endfor %}
+            <th style="display:none;">nodes</th>
+		</tr>
+	</thead>
+	<tbody>
+    <!-- instances -->
+    {% for instance in datanodes %}
+        <tr class="node_all {% for node in instance.nodes %}node{{ node }} {% endfor %}">
+            {% for attribute in instance.data %}
+            <td>{{ attribute }}</td>
+
+            {% endfor %}
+                        <td style="display:none;">{% for node in instance.nodes %}node{{ node }} {% endfor %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</center>
 
     <script type="text/javascript">
+    		var dt = $('#datasetTable{{widget.pk}}{{ random }}').DataTable( {
+			"bSortCellsTop" : true,
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers",
+            "iDisplayLength": 7
+		});
+            //dt.fnSetColumnVis( 4, false );
         // create an array with nodes
         var nodes = new vis.DataSet([
             {% for node in nodes %}
@@ -110,6 +149,27 @@
                 }
             });
             hide_descendants(params.nodes[0], hide, false);
+            network.fit();
+        });
+
+        network.on("selectNode", function (params) {
+            console.log('selectNode Event:', params);
+            params.nodes.forEach(function (item) {
+                dt.fnFilter("node"+item);
+               // alert('.node'+item);
+            });
+            /*var hide = true;
+            nodes.forEach(function (item) {
+                if (item.id == params.nodes[0]) {
+                    if (item.condensed) {
+                        nodes.update({id:item.id,condensed:false});
+                        hide = false;
+                    } else {
+                        nodes.update({id:item.id,condensed:true});
+                    }
+                }
+            });
+            hide_descendants(params.nodes[0], hide, false);*/
             network.fit();
         });
 
