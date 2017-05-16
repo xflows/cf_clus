@@ -120,3 +120,5 @@ def clus_display_tree_and_examples(request, input_dict, output_dict, widget):
                       'random': int(random() * 10000000),
                   })
 
+
+

@@ -92,7 +92,7 @@ def clus(input_dict):
         'default': default,
         'original': original,
         'pruned': pruned,
-        'error:': error
+        # 'error:': error
     }
 
 
