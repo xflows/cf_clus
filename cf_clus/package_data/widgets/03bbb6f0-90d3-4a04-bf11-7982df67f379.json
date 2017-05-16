@@ -4,7 +4,7 @@
     "fields": {
       "category": "55c0628f-f12d-40fe-bbca-f7c960654a01", 
       "treeview_image": "", 
-      "uid": "087086f2-be89-4c9e-a110-261efc5acf7f", 
+      "uid": "03bbb6f0-90d3-4a04-bf11-7982df67f379", 
       "windows_queue": false, 
       "package": "cf_clus", 
       "interaction_view": "", 
@@ -12,8 +12,8 @@
       "image": "", 
       "description": "Displays a decision tree built by CLUS. ", 
       "static_image": "TreeVisualization.png", 
-      "action": "clus_display_tree", 
-      "visualization_view": "clus_display_tree", 
+      "action": "clus_display_tree_and_examples", 
+      "visualization_view": "clus_display_tree_and_examples", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
@@ -21,15 +21,32 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display Decision Tree (Interactive)"
+      "name": "Display Decision Tree and Examples"
     }
   }, 
   {
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": "087086f2-be89-4c9e-a110-261efc5acf7f", 
-      "name": "Model", 
-      "short_name": "mod", 
+      "widget": "03bbb6f0-90d3-4a04-bf11-7982df67f379", 
+      "name": "Data", 
+      "short_name": "arf", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "arff", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "9fa637d5-2e71-4fd7-8dee-df3c684586de"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "03bbb6f0-90d3-4a04-bf11-7982df67f379", 
+      "name": "Classifier", 
+      "short_name": "cls", 
       "default": "", 
       "description": "", 
       "required": false, 
@@ -38,7 +55,7 @@
       "variable": "classifier", 
       "parameter": false, 
       "order": 1, 
-      "uid": "4dd6e04f-9395-4c7b-989e-1d37386e1291"
+      "uid": "b2f25b89-138b-48a9-8d32-d17bf5288428"
     }
   }
 ]

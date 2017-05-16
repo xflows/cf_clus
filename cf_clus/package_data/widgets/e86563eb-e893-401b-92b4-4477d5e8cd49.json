@@ -45,8 +45,8 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "e86563eb-e893-401b-92b4-4477d5e8cd49", 
-      "name": "Classifier", 
-      "short_name": "cls", 
+      "name": "Model", 
+      "short_name": "mod", 
       "default": "", 
       "description": "", 
       "required": false, 
