@@ -20,7 +20,8 @@ def clus_tree_to_node_edge(node, node_index):
     edges = []
     node['dot_id'] = node_index
     if 'children' in node:
-        nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse'})
+        nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse',
+                      'target_stat': node['target_stat'].replace(',', ',\\n')})
         node_index += 1
         for child in node['children']:
             child_nodes, child_edges, node_index = clus_tree_to_node_edge(child, node_index)
@@ -28,7 +29,8 @@ def clus_tree_to_node_edge(node, node_index):
             edges += child_edges
             edges.append({'from': node['dot_id'], 'to': child['dot_id'], 'label': child['branch_label']})
     else:
-        nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box'})
+        nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box',
+                      'target_stat': node['target_stat']})
         return nodes, edges, node_index + 1
     return nodes, edges, node_index
 
@@ -51,6 +53,15 @@ def perform_test(test_string, instance, attributes):
         for a in attributes:
             if a[0] == name:
                 return instance[i] == value
+            i += 1
+    if " <= " in test_string:
+        name_value = test_string.split(' <= ')
+        name = name_value[0]
+        value = name_value[1]
+        i = 0
+        for a in attributes:
+            if a[0] == name:
+                return instance[i] <= value
             i += 1
     return None
 

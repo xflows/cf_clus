@@ -9,31 +9,44 @@
         // create an array with nodes
         var nodes = new vis.DataSet([
             {% for node in nodes %}
-            {id: '{{ node.id }}', label: '{{ node.label|safe }}', shape: '{{node.shape}}', shadow:{
-      enabled: true,
-      color: 'rgba(0,0,0,0.5)',
-      size:10,
-      x:5,
-      y:5
-    }, color: {
-      border: '#2B7CE9',
-      background: 'white',
-      highlight: {
-        border: '#2B7CE9',
-        background: '#D2E5FF'
-      },
-      hover: {
-        border: '#2B7CE9',
-        background: '#D2E5FF'
-      }
-    }}{% if not forloop.last %},{% endif %}
+                {
+                    id: '{{ node.id }}',
+                    label: '{{ node.label|safe }}',
+                    target_stat: '{{ node.target_stat }}',
+                    orig_shape: '{{ node.shape }}',
+                    orig_label: '{{ node.label|safe }}',
+                    shape: '{{node.shape}}',
+                    shadow: {
+                        enabled: true,
+                        color: 'rgba(0,0,0,0.5)',
+                        size: 10,
+                        x: 5,
+                        y: 5
+                    },
+                    color: {
+                        border: '#2B7CE9',
+                        background: 'white',
+                        highlight: {
+                            border: '#2B7CE9',
+                            background: '#D2E5FF'
+                        },
+                        hover: {
+                            border: '#2B7CE9',
+                            background: '#D2E5FF'
+                        }
+                    }
+                }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ]);
 
         // create an array with edges
         var edges = new vis.DataSet([
             {% for edge in edges %}
-            {from: '{{ edge.from }}', to: '{{ edge.to }}', label:'{{ edge.label|safe }}'}{% if not forloop.last %},{% endif %}
+                {
+                    from: '{{ edge.from }}',
+                    to: '{{ edge.to }}',
+                    label: '{{ edge.label|safe }}'
+                }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ]);
 
@@ -48,15 +61,15 @@
         var options = {
             'layout': {
                 'hierarchical': {
-                  enabled:true,
-                  levelSeparation: 150,
-                  nodeSpacing: 300,
-                  treeSpacing: 200,
-                  blockShifting: false,
-                  edgeMinimization: true,
-                  parentCentralization: true,
-                  direction: 'UD',        // UD, DU, LR, RL
-                  sortMethod: 'directed'   // hubsize, directed
+                    enabled: true,
+                    levelSeparation: 150,
+                    nodeSpacing: 300,
+                    treeSpacing: 200,
+                    blockShifting: false,
+                    edgeMinimization: true,
+                    parentCentralization: true,
+                    direction: 'UD',        // UD, DU, LR, RL
+                    sortMethod: 'directed'   // hubsize, directed
                 }
             },
             'interaction': {
@@ -71,13 +84,13 @@
             'physics': {
                 enabled: false,
                 /* hierarchicalRepulsion: {
-                      centralGravity: 0.0,
-                      springLength: 100,
-                      springConstant: 0.01,
-                      nodeDistance: 200,
-                      damping: 0.09
-                    },
-                solver: 'hierarchicalRepulsion', */
+                 centralGravity: 0.0,
+                 springLength: 100,
+                 springConstant: 0.01,
+                 nodeDistance: 200,
+                 damping: 0.09
+                 },
+                 solver: 'hierarchicalRepulsion', */
             }
         };
 
@@ -85,35 +98,55 @@
         var network = new vis.Network(container, data, options);
 
         function hide_descendants(node_id, hide, apply_node) {
+            var node_item = nodes.get(node_id);
             if (apply_node) {
-                nodes.update({id:node_id,hidden:hide});
+                nodes.update({id: node_id, hidden: hide});
             }
             edges.forEach(function (item) {
-              if (item.from == node_id) {
-                  edges.update({id:item.id,hidden:hide});
-                  hide_descendants(item.to,hide, true);
-              }
+                if (!hide && !node_item.condensed || hide) {
+                    if (item.from == node_id) {
+                        edges.update({id: item.id, hidden: hide});
+                        hide_descendants(item.to, hide, true);
+                    }
+                }
             })
         }
 
         network.on("doubleClick", function (params) {
             console.log('doubleClick Event:', params);
             var hide = true;
-            nodes.forEach(function (item) {
-                if (item.id == params.nodes[0]) {
-                    if (item.condensed) {
-                        nodes.update({id:item.id,condensed:false});
-                        hide = false;
-                    } else {
-                        nodes.update({id:item.id,condensed:true});
-                    }
+            if (params.nodes.length > 0) {
+                var item = nodes.get(params.nodes[0]);
+                if (item.condensed) {
+                    nodes.update({
+                        id: item.id, condensed: false, label: item.orig_label, shape: item.orig_shape,
+                        color: {
+                            background: 'white',
+                            highlight: {
+                                background: '#D2E5FF'
+                            }
+                        }
+                    });
+                    hide = false;
+                } else if (item.shape != 'box') {
+                    nodes.update({
+                        id: item.id, condensed: true, label: item.target_stat, shape: 'box',
+                        color: {
+                            background: '#dddddd',
+                            highlight: {
+                                background: 'yellow'
+                            }
+                        }
+                    });
                 }
-            });
-            hide_descendants(params.nodes[0], hide, false);
-            network.fit();
+                hide_descendants(params.nodes[0], hide, false);
+                network.fit();
+            }
         });
 
         network.fit();
-        setTimeout(function(){ network.fit(); }, 50);
+        setTimeout(function () {
+            network.fit();
+        }, 50);
     </script>
 </div>
