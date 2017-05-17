@@ -105,6 +105,8 @@ def clus_display_tree(input_dict):
 
 
 def clus_display_tree_and_examples(input_dict):
+    if type(input_dict['classifier']) == list:
+        raise Exception("This widget does not work on multiple trees.")
     return {}
 
 

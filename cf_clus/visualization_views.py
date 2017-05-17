@@ -80,7 +80,7 @@ def clus_display_tree(request, input_dict, output_dict, widget):
         nodes, edges = [], []
         starting_id = 0
         for cls in input_dict['classifier']:
-            new_nodes, new_edges, starting_id = clus_tree_to_node_edge(cls, starting_id)
+            new_nodes, new_edges, starting_id = clus_tree_to_node_edge(cls['representation'], starting_id)
             nodes += new_nodes
             edges += new_edges
     else:
@@ -125,7 +125,17 @@ def clus_display_tree_and_examples(request, input_dict, output_dict, widget):
 def clus_display_tree_and_summary(request, input_dict, output_dict, widget):
     """Visualization displaying a decision tree and the summary"""
 
-    nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+    if type(input_dict['classifier']) == list:
+        nodes, edges = [], []
+        starting_id = 0
+        attributes = input_dict['classifier'][0]['representation']['summary']['names']
+        for cls in input_dict['classifier']:
+            new_nodes, new_edges, starting_id = clus_tree_to_node_edge(cls['representation'], starting_id)
+            nodes += new_nodes
+            edges += new_edges
+    else:
+        nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+        attributes = input_dict['classifier']['summary']['names']
 
     return render(request,
                   'visualizations/cf_clus_display_tree_and_summary.html',
@@ -134,6 +144,6 @@ def clus_display_tree_and_summary(request, input_dict, output_dict, widget):
                       'input_dict': input_dict,
                       'nodes': nodes,
                       'edges': edges,
-                      'attributes': input_dict['classifier']['summary']['names'],
+                      'attributes': attributes,
                       'random': int(random() * 10000000),
                   })
