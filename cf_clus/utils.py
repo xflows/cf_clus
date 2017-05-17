@@ -22,7 +22,7 @@ def clus_tree_to_node_edge(node, node_index):
     if 'children' in node:
         nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse',
                       'target_stat': node['target_stat'].replace(',', ',\\n'),
-                      'title': node['target_stat'].replace(',', ',\\n'),
+                      'title': node['target_stat'].replace(',', ',<br>'),
                       'min':node['summary']['min'],
                       'max':node['summary']['max'],
                       'stddev':node['summary']['stddev'],
@@ -35,7 +35,7 @@ def clus_tree_to_node_edge(node, node_index):
             edges.append({'from': node['dot_id'], 'to': child['dot_id'], 'label': child['branch_label']})
     else:
         nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box',
-                      'target_stat': node['target_stat'], 'title': node['target_stat'].replace(',', ',\\n'),
+                      'target_stat': node['target_stat'], 'title': node['target_stat'].replace(',', ',<br>'),
                       'min':node['summary']['min'],
                       'max':node['summary']['max'],
                       'stddev':node['summary']['stddev'],
