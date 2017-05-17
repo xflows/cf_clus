@@ -103,14 +103,22 @@
             if (apply_node) {
                 nodes.update({id: node_id, hidden: hide});
             }
-            edges.forEach(function (item) {
-                if (!hide && !node_item.condensed || hide) {
+            if (!hide && !node_item.condensed || hide) {
+                var my_edges = network.getConnectedEdges(node_id)
+                my_edges.forEach(function (edge) {
+                    var item = edges.get(edge);
                     if (item.from == node_id) {
                         edges.update({id: item.id, hidden: hide});
                         hide_descendants(item.to, hide, true);
                     }
-                }
-            })
+                });
+                /*edges.forEach(function (item) {
+                    if (item.from == node_id) {
+                        edges.update({id: item.id, hidden: hide});
+                        hide_descendants(item.to, hide, true);
+                    }
+                })*/
+            }
         }
 
         network.on("doubleClick", function (params) {
