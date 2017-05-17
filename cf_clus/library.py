@@ -106,3 +106,7 @@ def clus_display_tree(input_dict):
 
 def clus_display_tree_and_examples(input_dict):
     return {}
+
+
+def clus_display_tree_and_summary(input_dict):
+    return {}

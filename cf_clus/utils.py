@@ -11,7 +11,7 @@ def clus_tree_to_dot(node, node_index):
                 'branch_label'] + '"]' + "\n"
     else:
         return "N" + str(node_index) + ' [label="' + node[
-            'target_stat'] + '" shape=box style=filled ]\n', node_index + 1
+            'target_stat'].replace(',', ',\\n') + '" shape=box style=filled ]\n', node_index + 1
     return text, node_index
 
 
@@ -22,7 +22,11 @@ def clus_tree_to_node_edge(node, node_index):
     if 'children' in node:
         nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse',
                       'target_stat': node['target_stat'].replace(',', ',\\n'),
-                      'title': node['summary'].replace("\n", "<br>")})
+                      'title': node['target_stat'].replace(',', ',\\n'),
+                      'min':node['summary']['min'],
+                      'max':node['summary']['max'],
+                      'stddev':node['summary']['stddev'],
+                      'avg':node['summary']['avg']})
         node_index += 1
         for child in node['children']:
             child_nodes, child_edges, node_index = clus_tree_to_node_edge(child, node_index)
@@ -31,7 +35,11 @@ def clus_tree_to_node_edge(node, node_index):
             edges.append({'from': node['dot_id'], 'to': child['dot_id'], 'label': child['branch_label']})
     else:
         nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box',
-                      'target_stat': node['target_stat'], 'title': node['summary'].replace("\n", "<br>")})
+                      'target_stat': node['target_stat'], 'title': node['target_stat'].replace(',', ',\\n'),
+                      'min':node['summary']['min'],
+                      'max':node['summary']['max'],
+                      'stddev':node['summary']['stddev'],
+                      'avg':node['summary']['avg']})
         return nodes, edges, node_index + 1
     return nodes, edges, node_index
 

@@ -43,6 +43,7 @@ def clus_display_svg(request, input_dict, output_dict, widget):
         dot_text = "digraph Tree {\n" + clus_tree_to_dot(input_dict['classifier'], 0)[0] + "}"
 
     filename = '/'.join([str(request.user.id), 'decisionTree-clus-%d.dot' % widget.id])
+    dotfile = filename
     destination_dot = '/'.join([MEDIA_ROOT, filename])
     ensure_dir(destination_dot)
 
@@ -66,6 +67,7 @@ def clus_display_svg(request, input_dict, output_dict, widget):
     return render(request,
                   'visualizations/cf_clus_display_svg_tree.html',
                   {'filename': filename,
+                   'dotfile': dotfile,
                    'random': int(random() * 10000000),
                    'widget': widget,
                    'input_dict': input_dict})
@@ -105,8 +107,7 @@ def clus_display_tree_and_examples(request, input_dict, output_dict, widget):
 
     for instance in data['data']:
         instance_nodes = get_instance_nodes(input_dict['classifier'], instance, data['attributes'])
-        datanodes.append({'data':instance,'nodes':instance_nodes})
-
+        datanodes.append({'data': instance, 'nodes': instance_nodes})
 
     return render(request,
                   'visualizations/cf_clus_display_tree_and_examples.html',
@@ -121,4 +122,18 @@ def clus_display_tree_and_examples(request, input_dict, output_dict, widget):
                   })
 
 
+def clus_display_tree_and_summary(request, input_dict, output_dict, widget):
+    """Visualization displaying a decision tree and the summary"""
 
+    nodes, edges, index = clus_tree_to_node_edge(input_dict['classifier'], 0)
+
+    return render(request,
+                  'visualizations/cf_clus_display_tree_and_summary.html',
+                  {
+                      'widget': widget,
+                      'input_dict': input_dict,
+                      'nodes': nodes,
+                      'edges': edges,
+                      'attributes': input_dict['classifier']['summary']['names'],
+                      'random': int(random() * 10000000),
+                  })

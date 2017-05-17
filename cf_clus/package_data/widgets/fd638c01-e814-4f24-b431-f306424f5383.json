@@ -1,0 +1,44 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "55c0628f-f12d-40fe-bbca-f7c960654a01", 
+      "treeview_image": "", 
+      "uid": "fd638c01-e814-4f24-b431-f306424f5383", 
+      "windows_queue": false, 
+      "package": "cf_clus", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Displays a decision tree built by CLUS. ", 
+      "static_image": "TreeVisualization.png", 
+      "action": "clus_display_tree_and_summary", 
+      "visualization_view": "clus_display_tree_and_summary", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Display Decision Tree and Summary"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "fd638c01-e814-4f24-b431-f306424f5383", 
+      "name": "Model", 
+      "short_name": "mod", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "classifier", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "defae7ce-bc5a-4869-868e-562b5ff52e07"
+    }
+  }
+]
