@@ -1,5 +1,5 @@
 <div id="widgetvisualization-{{ widget.pk }}" width="700" height="500" rel="{{ widget.pk }}"
-     class="widgetvisualizationdialog" title="{{ widget.name }} results">
-    <img stlye="height:300px;" src="{{ MEDIA_URL }}{{ filename }}?v={{ random }}">
+     class="widgetvisualizationdialog" title="{{ widget.name }} results" style="text-align:center;">
+    <img style="height:380px; max-width:100%;" src="{{ MEDIA_URL }}{{ filename }}?v={{ random }}"><br>
     <a href="{{ MEDIA_URL }}{{ dotfile }}?v={{ random }}">Download GraphViz .dot file.</a>
 </div>
