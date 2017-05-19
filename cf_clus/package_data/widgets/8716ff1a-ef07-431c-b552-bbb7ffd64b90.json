@@ -1,0 +1,486 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "55c0628f-f12d-40fe-bbca-f7c960654a01", 
+      "treeview_image": "", 
+      "uid": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "windows_queue": false, 
+      "package": "cf_clus", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "", 
+      "action": "clus_generate_settings", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Generate CLUS Tree settings"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Key", 
+      "short_name": "key", 
+      "default": "", 
+      "description": "Key", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Key", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "48c439bf-9828-405c-a9c1-fc193f942cee"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Tree Heuristic", 
+      "short_name": "th", 
+      "default": "", 
+      "description": "Heuristic", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "Heuristic", 
+      "parameter": true, 
+      "order": 11, 
+      "uid": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Disable", 
+      "short_name": "dis", 
+      "default": "", 
+      "description": "Disable", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Disable", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "701e6cc8-8100-48de-a5f4-cf6032611293"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Descriptive", 
+      "short_name": "dsc", 
+      "default": "", 
+      "description": "Descriptive", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Descriptive", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "8406b2e8-f0d9-42cd-accf-dedc3cdffe5d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Target", 
+      "short_name": "trg", 
+      "default": "", 
+      "description": "Target", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Target", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "952a604c-835e-418b-8242-f6dc2a34b5c7"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Weights", 
+      "short_name": "wei", 
+      "default": "", 
+      "description": "Weights", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Weights", 
+      "parameter": true, 
+      "order": 7, 
+      "uid": "aca3594b-c329-44e9-9b4b-debad5a99d2d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Pruning Method", 
+      "short_name": "pm", 
+      "default": "Default", 
+      "description": "PruningMethod", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "PruningMethod", 
+      "parameter": true, 
+      "order": 12, 
+      "uid": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Split Sampling", 
+      "short_name": "ss", 
+      "default": "", 
+      "description": "SplitSampling", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "SplitSampling", 
+      "parameter": true, 
+      "order": 10, 
+      "uid": "caf8355b-8781-4e40-87f9-f032d47ebcd1"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Minimal Weight", 
+      "short_name": "mwe", 
+      "default": "", 
+      "description": "Minimal Weight", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "MinimalWeight", 
+      "parameter": true, 
+      "order": 8, 
+      "uid": "dfc448f3-f96f-43b5-bed1-0c309f02dfd0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Random Seed", 
+      "short_name": "rnd", 
+      "default": "", 
+      "description": "Random seed is used to initialize the random generator. Some procedures used by Clus (e.g., creation of cross-validation folds) are randomized, and as a result, different runs of Clus on identical data may still yield different outputs. When Clus is run on identical input data with the same RandomSeed setting, it is guaranteed to yield the same results.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "RandomSeed", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "e06c884e-abbb-4ead-b594-40fe6f302901"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Clustering", 
+      "short_name": "cls", 
+      "default": "", 
+      "description": "Clustering", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "Clustering", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "e0b0183f-d434-4f44-a028-f441b6438d5a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "FTest", 
+      "short_name": "fte", 
+      "default": "", 
+      "description": "FTest", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "FTest", 
+      "parameter": true, 
+      "order": 9, 
+      "uid": "ee2c8b2b-3a88-47c8-a915-d28be2b2a211"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Settings", 
+      "short_name": "set", 
+      "description": "Settings", 
+      "variable": "settings", 
+      "order": 1, 
+      "uid": "0a59337a-45cc-4222-8cc9-7838a2e79160"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "SemiSupervised", 
+      "uid": "020c4494-175f-43f3-a88a-5807d7ba8782", 
+      "value": "SemiSupervised", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "GainRatio", 
+      "uid": "05e0ca2c-fbbb-4392-aa13-d8584294082e", 
+      "value": "GainRatio", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "DispersionMlt", 
+      "uid": "0a7b5437-217f-4897-acb9-c7105c215be6", 
+      "value": "DispersionMlt", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Garofalakis", 
+      "uid": "1898643c-3cf6-49fc-9b9c-12c10393863e", 
+      "value": "Garofalakis", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "C4.5", 
+      "uid": "34e4832f-1bde-419f-96a9-6da33405d4ef", 
+      "value": "C4.5", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Default", 
+      "uid": "3852bfaf-9ae3-4a49-a14d-d0e63cc839e6", 
+      "value": "Default", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Default", 
+      "uid": "4f5d5c9c-9539-4131-bc56-65059f4b6b40", 
+      "value": "Default", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "CartMaxSize", 
+      "uid": "5df14396-28dc-4557-a485-b77e50883783", 
+      "value": "CartMaxSize", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "ReducedError", 
+      "uid": "61c20171-4c9d-4427-bc71-2d90e2867fb3", 
+      "value": "ReducedError", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "DispersionAdt", 
+      "uid": "6c962a0d-9258-41df-a1e9-f30ed51f8b3d", 
+      "value": "DispersionAdt", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "GarofalakisVSB", 
+      "uid": "70385f9b-7ede-4bff-be90-939013028859", 
+      "value": "GarofalakisVSB", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "RDispersionMlt", 
+      "uid": "70fc3a83-eaab-4121-9246-53e8abff75ff", 
+      "value": "RDispersionMlt", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "M5", 
+      "uid": "89e245d2-ae04-4aaa-bf7a-b27c080c8efd", 
+      "value": "M5", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "RDispersionAdt", 
+      "uid": "8f6c00af-5668-420a-88aa-3c8f79b3e33d", 
+      "value": "RDispersionAdt", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Gain", 
+      "uid": "9e0dd4c9-2d07-49d7-87b7-3b0100a04377", 
+      "value": "Gain", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "CartVSB", 
+      "uid": "b3814a93-c6ec-4b36-93ae-10c5173799cd", 
+      "value": "CartVSB", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "SSPD", 
+      "uid": "c38a6b18-e946-4f7a-a86f-7f68c4361422", 
+      "value": "SSPD", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "EncodingCost", 
+      "uid": "c438963a-462a-4200-9631-a557895b6677", 
+      "value": "EncodingCost", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "None", 
+      "uid": "cb2429e8-7f25-4e26-8a35-4597fc774df6", 
+      "value": "None", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "M5Multi", 
+      "uid": "da9aac96-7234-4527-adca-6103a656202f", 
+      "value": "M5Multi", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Morishita", 
+      "uid": "dfbb4e9d-eb15-4213-892d-dedb76058655", 
+      "value": "Morishita", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "VarianceReduction", 
+      "uid": "e00df773-95f7-46ba-81c9-b649cb44e3c3", 
+      "value": "VarianceReduction", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "ReducedErrorVSB", 
+      "uid": "ebaa60ca-a004-41ca-bbc7-a3d879e8fc32", 
+      "value": "ReducedErrorVSB", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "VarianceReductionMissing", 
+      "uid": "eef0ad82-2d52-49b4-92e9-b76d5aa6e82f", 
+      "value": "VarianceReductionMissing", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "CategoryUtility", 
+      "uid": "f499f14b-638d-44b1-87db-f146382255ac", 
+      "value": "CategoryUtility", 
+      "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "GeneticDistance", 
+      "uid": "f5866d88-0f05-40fc-a81b-67e8d77a9fc5", 
+      "value": "GeneticDistance", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "MEstimate", 
+      "uid": "f7d1c1ca-2653-4341-b853-3f87c35bddec", 
+      "value": "MEstimate", 
+      "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }
+]

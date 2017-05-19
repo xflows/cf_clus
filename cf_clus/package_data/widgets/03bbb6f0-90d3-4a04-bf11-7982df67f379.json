@@ -21,7 +21,7 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display Decision Tree and Examples"
+      "name": "Display Predictive Clustering Tree and Examples"
     }
   }, 
   {
@@ -37,7 +37,7 @@
       "parameter_type": null, 
       "variable": "arff", 
       "parameter": false, 
-      "order": 1, 
+      "order": 2, 
       "uid": "9fa637d5-2e71-4fd7-8dee-df3c684586de"
     }
   }, 

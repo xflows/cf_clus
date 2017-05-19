@@ -5,6 +5,7 @@ import ConfigParser
 import json
 
 import subprocess
+import StringIO
 
 
 def clus(input_dict):
@@ -26,6 +27,24 @@ def clus(input_dict):
     if not settings.has_section('Data'):
         settings.add_section('Data')
     settings.set('Data', 'File', temporary_arff.name)
+
+    has_prune = False
+    # We check if there is prune set data.
+    if input_dict.get('prune', None) is not None:
+        temporary_validation = NamedTemporaryFile(suffix='.arff', delete=False)
+        temporary_validation.write(input_dict['prune'])
+        temporary_validation.close()
+        settings.set('Data', 'PruneSet', temporary_validation.name)
+        has_prune = True
+
+    has_test = False
+    # We check if there is test set data.
+    if input_dict.get('test', None) is not None:
+        temporary_test = NamedTemporaryFile(suffix='.arff', delete=False)
+        temporary_test.write(input_dict['prune'])
+        temporary_test.close()
+        settings.set('Data', 'TestSet', temporary_test.name)
+        has_test = True
 
     # We need to enable ClowdFlows output.
     if not settings.has_section('Output'):
@@ -49,6 +68,10 @@ def clus(input_dict):
     output = p.stdout.read()
     error = p.stderr.read()
 
+    if len(error.strip()) > 0:
+        if "Error: " in error:
+            raise Exception(error.strip())
+
     try:
         output_file = open(temporary_settings.name.replace(".s", ".out"), 'rb')
         output = output_file.read()
@@ -68,7 +91,7 @@ def clus(input_dict):
         pruned = {}
 
         for m in models:
-            print m
+            # print m
             if m['name'] == 'Default':
                 default = m['representation']
             if m['name'] == 'Original':
@@ -85,6 +108,12 @@ def clus(input_dict):
     # We remove all temporary files.
     os.unlink(temporary_arff.name)
     os.unlink(temporary_settings.name)
+
+    if has_prune:
+        os.unlink(temporary_validation.name)
+    if has_test:
+        os.unlink(temporary_test.name)
+
     return {
         'output': output,
         'settings': returned_settings,
@@ -112,3 +141,39 @@ def clus_display_tree_and_examples(input_dict):
 
 def clus_display_tree_and_summary(input_dict):
     return {}
+
+
+def handle_setting(name, input_dict, section, settings):
+    if input_dict.get(name, None) is not None \
+            and input_dict.get(name, "").strip() != "" \
+            and input_dict.get(name, "") != "null":
+        if not settings.has_section(section):
+            settings.add_section(section)
+        settings.set(section, name, input_dict[name])
+
+
+def clus_generate_settings(input_dict):
+    settings = ConfigParser.RawConfigParser()
+    settings.optionxform = str
+    settings_buffer = StringIO.StringIO()
+
+    handle_setting("RandomSeed", input_dict, "General", settings)
+
+    handle_setting("Target", input_dict, "Attributes", settings)
+    handle_setting("Clustering", input_dict, "Attributes", settings)
+    handle_setting("Disable", input_dict, "Attributes", settings)
+    handle_setting("Key", input_dict, "Attributes", settings)
+    handle_setting("Weights", input_dict, "Attributes", settings)
+
+    handle_setting("MinimalWeight", input_dict, "Model", settings)
+
+    handle_setting("FTest", input_dict, "Tree", settings)
+    handle_setting("SplitSampling", input_dict, "Tree", settings)
+    handle_setting("Heuristic", input_dict, "Tree", settings)
+    handle_setting("PruningMethod", input_dict, "Tree", settings)
+
+    settings.write(settings_buffer)
+
+    return {
+        'settings': settings_buffer.getvalue()
+    }

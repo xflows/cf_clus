@@ -21,7 +21,7 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display Decision Tree and Summary"
+      "name": "Display Predictive Clustering Tree and Summary"
     }
   }, 
   {
@@ -29,7 +29,7 @@
     "fields": {
       "widget": "fd638c01-e814-4f24-b431-f306424f5383", 
       "name": "Model", 
-      "short_name": "mod", 
+      "short_name": "pct", 
       "default": "", 
       "description": "", 
       "required": false, 

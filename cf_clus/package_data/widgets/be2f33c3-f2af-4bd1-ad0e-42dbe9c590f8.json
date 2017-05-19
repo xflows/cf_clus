@@ -28,10 +28,27 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
-      "name": "ARFF data", 
-      "short_name": "arf", 
+      "name": "Prune set", 
+      "short_name": "pru", 
       "default": "", 
-      "description": "", 
+      "description": "Prune set", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "prune", 
+      "parameter": false, 
+      "order": 3, 
+      "uid": "158baecb-4b41-4b3c-9625-b59c90afe1c1"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Training data", 
+      "short_name": "dat", 
+      "default": "", 
+      "description": "Training Data", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -56,6 +73,23 @@
       "parameter": false, 
       "order": 1, 
       "uid": "b44cfa1a-169b-4585-a2f1-b491124c1c79"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Test set", 
+      "short_name": "tst", 
+      "default": "", 
+      "description": "Test set", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "test", 
+      "parameter": false, 
+      "order": 4, 
+      "uid": "cae9194f-a49e-4275-ab4b-eddf260df1ca"
     }
   }, 
   {

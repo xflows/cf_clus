@@ -21,7 +21,7 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display Decision Tree (Static)"
+      "name": "Display Predictive Clustering Tree (Static)"
     }
   }, 
   {
@@ -46,7 +46,7 @@
     "fields": {
       "widget": "e86563eb-e893-401b-92b4-4477d5e8cd49", 
       "name": "Model", 
-      "short_name": "mod", 
+      "short_name": "pct", 
       "default": "", 
       "description": "", 
       "required": false, 
