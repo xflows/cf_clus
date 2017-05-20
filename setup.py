@@ -11,7 +11,7 @@ CLASSIFIERS = [
 
 dist = setup(
     name='cf_clus',
-    version='1.0.0',
+    version='1.0.1',
     author='Janez Kranjc',
     description='Induce predictive clustering trees in ClowdFlows.',
     long_description=long_description,
