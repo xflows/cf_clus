@@ -23,10 +23,10 @@ def clus_tree_to_node_edge(node, node_index):
         nodes.append({'id': node['dot_id'], 'label': node['test_string'], 'shape': 'ellipse',
                       'target_stat': node['target_stat'].replace(',', ',\\n'),
                       'title': node['target_stat'].replace(',', ',<br>'),
-                      'min':node['summary']['min'],
-                      'max':node['summary']['max'],
-                      'stddev':node['summary']['stddev'],
-                      'avg':node['summary']['avg']})
+                      'min': node['summary']['min'],
+                      'max': node['summary']['max'],
+                      'stddev': node['summary']['stddev'],
+                      'avg': node['summary']['avg']})
         node_index += 1
         for child in node['children']:
             child_nodes, child_edges, node_index = clus_tree_to_node_edge(child, node_index)
@@ -36,10 +36,10 @@ def clus_tree_to_node_edge(node, node_index):
     else:
         nodes.append({'id': node_index, 'label': node['target_stat'].replace(',', ',\\n'), 'shape': 'box',
                       'target_stat': node['target_stat'], 'title': node['target_stat'].replace(',', ',<br>'),
-                      'min':node['summary']['min'],
-                      'max':node['summary']['max'],
-                      'stddev':node['summary']['stddev'],
-                      'avg':node['summary']['avg']})
+                      'min': node['summary']['min'],
+                      'max': node['summary']['max'],
+                      'stddev': node['summary']['stddev'],
+                      'avg': node['summary']['avg']})
         return nodes, edges, node_index + 1
     return nodes, edges, node_index
 
@@ -73,6 +73,19 @@ def perform_test(test_string, instance, attributes):
         for a in attributes:
             if a[0] == name:
                 return instance[i] <= value
+            i += 1
+    if " in " in test_string:
+        name_value = test_string.split(' in ')
+        name = name_value[0]
+        value = name_value[1]
+        value = value.replace("{", "")
+        value = value.replace("}", "")
+        values = value.split(",")
+        values = [x.strip() for x in values]
+        i = 0
+        for a in attributes:
+            if a[0] == name:
+                return instance[i] in values
             i += 1
     return None
 
