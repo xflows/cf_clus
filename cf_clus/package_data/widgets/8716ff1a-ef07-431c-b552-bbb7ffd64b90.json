@@ -28,6 +28,40 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Entropy Type", 
+      "short_name": "et", 
+      "default": "", 
+      "description": "EntropyType", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "EntropyType", 
+      "parameter": true, 
+      "order": 13, 
+      "uid": "31981caa-ed32-419f-9e28-71ed73fada71"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Induction Order", 
+      "short_name": "io", 
+      "default": "", 
+      "description": "InductionOrder", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "InductionOrder", 
+      "parameter": true, 
+      "order": 14, 
+      "uid": "391f7d26-a48e-4873-ad9f-87c7f46bada5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
       "name": "Key", 
       "short_name": "key", 
       "default": "", 
@@ -107,6 +141,23 @@
       "parameter": true, 
       "order": 2, 
       "uid": "952a604c-835e-418b-8242-f6dc2a34b5c7"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8716ff1a-ef07-431c-b552-bbb7ffd64b90", 
+      "name": "Branch Frequency", 
+      "short_name": "bf", 
+      "default": "", 
+      "description": "BranchFrequency", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "BranchFrequency", 
+      "parameter": true, 
+      "order": 15, 
+      "uid": "9dfdae3d-7fdb-44cb-9a34-8ee2ff885390"
     }
   }, 
   {
@@ -252,6 +303,15 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
+      "name": "Best First", 
+      "uid": "02fba45f-972d-46b9-b827-fca655430c78", 
+      "value": "BestFirst", 
+      "abstract_input": "391f7d26-a48e-4873-ad9f-87c7f46bada5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
       "name": "GainRatio", 
       "uid": "05e0ca2c-fbbb-4392-aa13-d8584294082e", 
       "value": "GainRatio", 
@@ -315,6 +375,15 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
+      "name": "---", 
+      "uid": "61a0da6b-6568-42d3-bd0d-312303869576", 
+      "value": "", 
+      "abstract_input": "391f7d26-a48e-4873-ad9f-87c7f46bada5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
       "name": "ReducedError", 
       "uid": "61c20171-4c9d-4427-bc71-2d90e2867fb3", 
       "value": "ReducedError", 
@@ -333,6 +402,15 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
+      "name": "Depth First", 
+      "uid": "7013b00c-6f39-42d1-a2db-5c8ae02f6545", 
+      "value": "DepthFirst", 
+      "abstract_input": "391f7d26-a48e-4873-ad9f-87c7f46bada5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
       "name": "GarofalakisVSB", 
       "uid": "70385f9b-7ede-4bff-be90-939013028859", 
       "value": "GarofalakisVSB", 
@@ -346,6 +424,15 @@
       "uid": "70fc3a83-eaab-4121-9246-53e8abff75ff", 
       "value": "RDispersionMlt", 
       "abstract_input": "5460c436-4cbb-4816-a365-95c6fd61aa07"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "---", 
+      "uid": "7fa35575-cea8-432f-98a3-69f76297a4a4", 
+      "value": "", 
+      "abstract_input": "31981caa-ed32-419f-9e28-71ed73fada71"
     }
   }, 
   {
@@ -387,6 +474,15 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
+      "name": "Modified Entropy", 
+      "uid": "b81cbdbb-4033-42f4-89a8-5beb2ae4a1de", 
+      "value": "ModifiedEntropy", 
+      "abstract_input": "31981caa-ed32-419f-9e28-71ed73fada71"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
       "name": "SSPD", 
       "uid": "c38a6b18-e946-4f7a-a86f-7f68c4361422", 
       "value": "SSPD", 
@@ -400,6 +496,15 @@
       "uid": "c438963a-462a-4200-9631-a557895b6677", 
       "value": "EncodingCost", 
       "abstract_input": "bfebd9d5-fe18-4202-a7a4-f27cd75ba01d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Standard Entropy", 
+      "uid": "c5e3460a-11b3-4248-990c-732866e78262", 
+      "value": "StandardEntropy", 
+      "abstract_input": "31981caa-ed32-419f-9e28-71ed73fada71"
     }
   }, 
   {

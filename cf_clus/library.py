@@ -143,13 +143,24 @@ def clus_display_tree_and_summary(input_dict):
     return {}
 
 
-def handle_setting(name, input_dict, section, settings):
-    if input_dict.get(name, None) is not None \
+def handle_setting(name, input_dict, section, settings, checkbox=False):
+    if not checkbox and input_dict.get(name, None) is not None \
             and input_dict.get(name, "").strip() != "" \
             and input_dict.get(name, "") != "null":
         if not settings.has_section(section):
             settings.add_section(section)
         settings.set(section, name, input_dict[name])
+    if checkbox:
+        if input_dict.get(name, None) is not None \
+                and input_dict.get(name, "").strip() != "" \
+                and input_dict.get(name, "") != "null":
+            if not settings.has_section(section):
+                settings.add_section(section)
+            settings.set(section, name, "Yes")
+        else:
+            if not settings.has_section(section):
+                settings.add_section(section)
+            settings.set(section, name, "No")
 
 
 def clus_generate_settings(input_dict):
@@ -171,6 +182,10 @@ def clus_generate_settings(input_dict):
     handle_setting("SplitSampling", input_dict, "Tree", settings)
     handle_setting("Heuristic", input_dict, "Tree", settings)
     handle_setting("PruningMethod", input_dict, "Tree", settings)
+    handle_setting("InductionOrder", input_dict, "Tree", settings)
+    handle_setting("EntropyType", input_dict, "Tree", settings)
+
+    handle_setting("BranchFrequency", input_dict, "Output", settings, checkbox=True)
 
     settings.write(settings_buffer)
 
