@@ -132,6 +132,18 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Feature importance", 
+      "short_name": "fim", 
+      "description": "", 
+      "variable": "fimp", 
+      "order": 7, 
+      "uid": "641fd67c-1c07-4b08-97ba-aac13115c1d2"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
       "name": "Settings", 
       "short_name": "set", 
       "description": "", 

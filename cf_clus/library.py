@@ -41,7 +41,7 @@ def clus(input_dict):
     # We check if there is test set data.
     if input_dict.get('test', None) is not None:
         temporary_test = NamedTemporaryFile(suffix='.arff', delete=False)
-        temporary_test.write(input_dict['prune'])
+        temporary_test.write(input_dict['test'])
         temporary_test.close()
         settings.set('Data', 'TestSet', temporary_test.name)
         has_test = True
@@ -76,6 +76,14 @@ def clus(input_dict):
         output_file = open(temporary_settings.name.replace(".s", ".out"), 'rb')
         output = output_file.read()
         os.unlink(output_file.name)
+    except:
+        pass
+
+    fimp = ""
+    try:
+        fimp_file = open(temporary_settings.name.replace(".s", ".fimp"), 'rb')
+        fimp = fimp_file.read()
+        os.unlink(fimp_file.name)
     except:
         pass
 
@@ -121,6 +129,7 @@ def clus(input_dict):
         'default': default,
         'original': original,
         'pruned': pruned,
+        'fimp': fimp,
         # 'error:': error
     }
 
