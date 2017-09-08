@@ -45,6 +45,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
+      "name": "Command line arguments", 
+      "short_name": "arg", 
+      "default": "", 
+      "description": "Command line arguments", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "args", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "78a95ca7-d9ed-4186-bfd3-e72893fe869e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "be2f33c3-f2af-4bd1-ad0e-42dbe9c590f8", 
       "name": "Training data", 
       "short_name": "dat", 
       "default": "", 

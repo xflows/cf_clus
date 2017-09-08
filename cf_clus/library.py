@@ -57,8 +57,15 @@ def clus(input_dict):
 
     # Execute CLUS.
 
+    args = input_dict['args'].replace(";", "").replace("|", "")
+
+    if len(args.strip()) > 0:
+        args = args.split(" ")
+    else:
+        args = []
+
     clus_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'bin', 'Clus.jar')
-    p = subprocess.Popen(["java", "-jar", clus_path, temporary_settings.name], stdout=subprocess.PIPE,
+    p = subprocess.Popen(["java", "-jar", clus_path] + args + [temporary_settings.name,], stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
 
     if p.returncode != 0 and p.returncode is not None:
